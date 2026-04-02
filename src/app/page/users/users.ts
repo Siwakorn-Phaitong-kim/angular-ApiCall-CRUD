@@ -12,15 +12,16 @@ import { CommonModule } from '@angular/common';
 })
 export class Users implements OnInit {
   private router = inject(Router);
-
-  constructor(private cdr: ChangeDetectorRef) { }
   private apiService = inject(Api)
+  constructor(private cdr: ChangeDetectorRef) { }
+
   users: any[] = [];
   loading: boolean = true;
   error: string | null = null;
 
   ngOnInit(): void {
     this.getDataAll();
+    console.log(this.apiService)
   }
 
   async getDataAll(): Promise<any> {
@@ -28,7 +29,6 @@ export class Users implements OnInit {
     try {
       const respose = await this.apiService.getAllUsers();
       this.users = Array.isArray(respose) ? respose : (respose?.users || []);
-      this.loading = false;
       console.log('API Data:', this.users);
     } catch (error) {
       console.log(error);
@@ -43,9 +43,14 @@ export class Users implements OnInit {
   async deleteUser(id: any): Promise<void> {
     const condelete = confirm('You Confirm to Delete This User?')
     if (condelete) {
-      await this.apiService.deleteUser(id)
-      console.log(`delete userid ${id} success`)
-      this.getDataAll()
+      try {
+        await this.apiService.deleteUser(id)
+        console.log(`delete user ID( ${id}  )success`)
+        this.getDataAll()
+      } catch (error) {
+        console.log(error);
+        this.error = 'Error deleting data';
+      }
     }
   }
 

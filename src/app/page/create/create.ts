@@ -58,7 +58,7 @@ export class Create {
     try {
       await this.apiService.createUsers(this.user);
       alert('บันทึกข้อมูลสำเร็จ');
-      this.router.navigate(['/']);
+      this.router.navigate(['users']);
     } catch (e) {
       console.error(e);
       alert('เกิดข้อผิดพลาดในการบันทึกข้อมูล');

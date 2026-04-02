@@ -8,27 +8,32 @@ import { firstValueFrom } from 'rxjs';
 })
 export class Api {
 
-  private apiService = `${environment.apiUrl}/users`;
+  private apiService = `${environment.apiUrl}`;
 
   constructor(private http: HttpClient) { }
 
-  async getAllUsers(): Promise<any> {
-    return await firstValueFrom(this.http.get(this.apiService))
+  getAllUsers(): Promise<any> {
+    const api = `${this.apiService}/users`
+    return (this.http.get(api)).toPromise()
   }
 
-  async getOneUsers(id: any): Promise<any> {
-    return await firstValueFrom(this.http.get(`${this.apiService}/${id}`))
+  getOneUsers(id: any): Promise<any> {
+    const api = `${this.apiService}/users/${id}`
+    return (this.http.get(api)).toPromise()
   }
 
-  async createUsers(data: any): Promise<void> {
-    await firstValueFrom(this.http.post(`${this.apiService}`, data))
+  createUsers(data: any): Promise<any> {
+    const api = `${this.apiService}/users`
+    return this.http.post(api, data).toPromise()
   }
 
-  async deleteUser(id: any): Promise<void> {
-    await firstValueFrom(this.http.delete(`${this.apiService}/${id}`))
+  deleteUser(id: any): Promise<any> {
+    const api = `${this.apiService}/users/${id}`
+    return this.http.delete(api).toPromise()
   }
 
-  async editUser(id: any, data: any): Promise<void> {
-    await firstValueFrom(this.http.put(`${this.apiService}/${id}`, data))
+  editUser(id: any, data: any): Promise<any> {
+    const api = `${this.apiService}/users/${id}`
+    return this.http.put(api, data).toPromise()
   }
 }
