@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Api } from '../../service/api';
+import { User } from '../../model/user';
 
 @Component({
   selector: 'app-create',
@@ -11,18 +12,18 @@ import { Api } from '../../service/api';
   styleUrl: './create.css',
 })
 export class Create {
-  constructor(private cdr: ChangeDetectorRef) { }
   private router = inject(Router);
   private apiService = inject(Api);
+  private cdr = inject(ChangeDetectorRef);
 
   saving: boolean = false;
 
-  user: any = {
+  user: User = {
     firstName: '',
     lastName: '',
     email: '',
     phone: '',
-    age: null,
+    age: 0,
     role: 'user',
     image: 'https://dummyjson.com/icon/default/128'
   };
