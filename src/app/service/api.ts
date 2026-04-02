@@ -1,39 +1,36 @@
-import { Injectable } from '@angular/core';
-import { environment } from './environment';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { firstValueFrom } from 'rxjs';
+import { environment } from './environment';
+import { firstValueFrom, Observable } from 'rxjs';
+import { User } from '../model/user';
 
 @Injectable({
   providedIn: 'root',
 })
 export class Api {
+  private http = inject(HttpClient);
+  private apiUrl = `${environment.apiUrl}/users`;
 
-  private apiService = `${environment.apiUrl}`;
-
-  constructor(private http: HttpClient) { }
-
-  getAllUsers(): Promise<any> {
-    const api = `${this.apiService}/users`
-    return (this.http.get(api)).toPromise()
+  getAllUsers(): Promise<User[] | { users: User[] }> {
+    return firstValueFrom(this.http.get<User[] | { users: User[] }>(this.apiUrl));
   }
 
-  getOneUsers(id: any): Promise<any> {
-    const api = `${this.apiService}/users/${id}`
-    return (this.http.get(api)).toPromise()
+  getOneUser(id: string | number): Promise<User> {
+    const api = `${this.apiUrl}/${id}`;
+    return firstValueFrom(this.http.get<User>(api));
   }
 
-  createUsers(data: any): Promise<any> {
-    const api = `${this.apiService}/users`
-    return this.http.post(api, data).toPromise()
+  createUsers(data: User): Promise<User> {
+    return firstValueFrom(this.http.post<User>(this.apiUrl, data));
   }
 
-  deleteUser(id: any): Promise<any> {
-    const api = `${this.apiService}/users/${id}`
-    return this.http.delete(api).toPromise()
+  deleteUser(id: string | number): Promise<any> {
+    const api = `${this.apiUrl}/${id}`;
+    return firstValueFrom(this.http.delete(api));
   }
 
-  editUser(id: any, data: any): Promise<any> {
-    const api = `${this.apiService}/users/${id}`
-    return this.http.put(api, data).toPromise()
+  editUser(id: string | number, data: User): Promise<User> {
+    const api = `${this.apiUrl}/${id}`;
+    return firstValueFrom(this.http.put<User>(api, data));
   }
 }
