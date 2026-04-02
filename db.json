@@ -81,7 +81,7 @@
       "username": "emilys",
       "password": "emilyspass",
       "birthDate": "1996-5-30",
-      "image": "https://static.vecteezy.com/system/resources/previews/000/439/863/non_2x/vector-users-icon.jpg",
+      "image": "",
       "bloodGroup": "O-",
       "height": 193.24,
       "weight": 63.16,
@@ -143,7 +143,7 @@
     {
       "id": "13",
       "firstName": "Noah",
-      "lastName": "Hernandez",
+      "lastName": "Hernandez22222",
       "maidenName": "",
       "age": 41,
       "gender": "male",

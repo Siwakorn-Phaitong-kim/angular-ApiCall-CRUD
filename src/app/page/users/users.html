@@ -1,5 +1,10 @@
 <div class="user-dashboard">
-    <button class="btn btn-delete" (click)="back()">Back</button>
+    <div class="top-actions" style="display: flex; gap: 10px; margin-bottom: 1rem;">
+        <button class="btn btn-secondary" (click)="back()"
+            style="background-color: #f3f4f6; color: #374151;">Back</button>
+        <button class="btn btn-primary" (click)="createUser()" style="background-color: #3b82f6; color: white;">+
+            เพิ่มผู้ใช้งานใหม่</button>
+    </div>
     <div class="header">
         <h1>Users Management</h1>
         <p class="subtitle">Manage all the users in your organization</p>
@@ -10,7 +15,12 @@
         <p>กำลังโหลดข้อมูล...</p>
     </div>
 
-    <div class="user-grid" *ngIf="!loading">
+    <div class="empty-state" *ngIf="!loading && (!users || users.length === 0)">
+        <h3>ไม่พบข้อมูล</h3>
+        <p>ไม่พบข้อมูลผู้ใช้งาน หรือเซิร์ฟเวอร์อาจไม่สามารถเชื่อมต่อได้</p>
+    </div>
+
+    <div class="user-grid" *ngIf="!loading && users && users.length > 0">
         <div class="user-card" *ngFor="let user of users">
             <div class="card-header">
                 <div class="avatar-wrapper">

@@ -23,6 +23,36 @@
   font-size: 1.1rem;
 }
 
+/* Empty State */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem;
+  background: white;
+  border-radius: 16px;
+  border: 1px dashed #d1d5db;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.empty-state-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.empty-state h3 {
+  font-size: 1.5rem;
+  color: #374151;
+  margin: 0 0 0.5rem 0;
+}
+
+.empty-state p {
+  margin: 0;
+  color: #6b7280;
+}
+
 /* Loading State */
 .loading-state {
   display: flex;
@@ -215,6 +245,19 @@
 
   .user-card:hover {
     box-shadow: 0 12px 20px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+  }
+
+  .empty-state {
+    background: #1f2937;
+    border-color: #4b5563;
+  }
+
+  .empty-state h3 {
+    color: #f9fafb;
+  }
+
+  .empty-state p {
+    color: #d1d5db;
   }
 
   .user-main-info h2 {

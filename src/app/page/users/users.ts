@@ -27,12 +27,13 @@ export class Users implements OnInit {
     this.loading = true;
     try {
       const respose = await this.apiService.getAllUsers();
-      this.users = Array.isArray(respose) ? respose : (respose.users || []);
-      this.loading = false
+      this.users = Array.isArray(respose) ? respose : (respose?.users || []);
+      this.loading = false;
       console.log('API Data:', this.users);
     } catch (error) {
       console.log(error);
-      this.error = 'Error al cargar los productos';
+      this.error = 'Error fetching data';
+      this.users = [];
     } finally {
       this.loading = false;
       this.cdr.detectChanges();
@@ -53,6 +54,9 @@ export class Users implements OnInit {
     this.router.navigate(['edit', id]);
   }
 
+  createUser() {
+    this.router.navigate(['create'])
+  }
 
   back() {
     this.router.navigate(['']);
