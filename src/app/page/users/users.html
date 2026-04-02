@@ -56,7 +56,7 @@
                 </div>
             </div>
 
-            <div class="card-actions">
+            <div class="card-actions" *ngIf="user.role === 'user'">
                 <button class="btn btn-edit" (click)="editUser(user.id)">แก้ไข</button>
                 <button class="btn btn-delete" (click)="deleteUser(user.id)">ลบ</button>
             </div>
