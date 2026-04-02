@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
 export class Users implements OnInit {
   private router = inject(Router);
   private apiService = inject(Api)
-  constructor(private cdr: ChangeDetectorRef) { }
+  private cdr = inject(ChangeDetectorRef)
 
   users: any[] = [];
   loading: boolean = true;
