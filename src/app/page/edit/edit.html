@@ -1,0 +1,56 @@
+<div class="edit-dashboard">
+  <div class="header">
+    <h1>แก้ไขข้อมูลผู้ใช้</h1>
+    <p class="subtitle">Edit User Information</p>
+  </div>
+
+  <div class="loading-state" *ngIf="loading">
+    <div class="spinner"></div>
+    <p>กำลังโหลดข้อมูล...</p>
+  </div>
+
+  <div class="form-container" *ngIf="!loading && user">
+    <form (ngSubmit)="save()">
+      <div class="form-group">
+        <label>ชื่อ (First Name)</label>
+        <input id="firstName" type="text" name="firstName" [(ngModel)]="user.firstName" required class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label>นามสกุล (Last Name)</label>
+        <input id="lastName" type="text" name="lastName" [(ngModel)]="user.lastName" required class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label>อีเมล (Email)</label>
+        <input id="email" type="email" name="email" [(ngModel)]="user.email" required class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label>เบอร์โทรศัพท์ (Phone)</label>
+        <input id="phone" type="text" name="phone" [(ngModel)]="user.phone" required class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label>อายุ (Age)</label>
+        <input id="age" type="number" name="age" [(ngModel)]="user.age" required class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label>สิทธิ์ (Role)</label>
+        <select id="role" name="role" [(ngModel)]="user.role" class="form-control">
+          <option value="admin">Admin</option>
+          <option value="moderator">Moderator</option>
+          <option value="user">User</option>
+        </select>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="btn btn-secondary" (click)="cancel()" [disabled]="saving">ยกเลิก (Cancel)</button>
+        <button type="submit" class="btn btn-primary" [disabled]="saving">
+          {{ saving ? 'กำลังบันทึก...' : 'บันทึกข้อมูล (Save)' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

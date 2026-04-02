@@ -1,0 +1,55 @@
+<div class="user-dashboard">
+    <button class="btn btn-delete" (click)="back()">Back</button>
+    <div class="header">
+        <h1>Users Management</h1>
+        <p class="subtitle">Manage all the users in your organization</p>
+    </div>
+
+    <div class="loading-state" *ngIf="loading">
+        <div class="spinner"></div>
+        <p>กำลังโหลดข้อมูล...</p>
+    </div>
+
+    <div class="user-grid" *ngIf="!loading">
+        <div class="user-card" *ngFor="let user of users">
+            <div class="card-header">
+                <div class="avatar-wrapper">
+                    <img [src]="user.image" [alt]="user.firstName" class="avatar">
+                </div>
+                <div class="user-main-info">
+                    <h2>{{ user.firstName }} {{ user.lastName }}</h2>
+                    <span class="badge role-badge">{{ user.role }}</span>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <span>ID : {{ user.id }}</span>
+                <div class="info-row">
+                    <span class="icon">📧</span>
+                    <span>{{ user.email }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="icon">📞</span>
+                    <span>{{ user.phone }}</span>
+                </div>
+                <div class="info-row" *ngIf="user.address">
+                    <span class="icon">📍</span>
+                    <span>{{ user.address.city }}, {{ user.address.state }}</span>
+                </div>
+                <div class="info-row" *ngIf="user.company">
+                    <span class="icon">🏢</span>
+                    <span>{{ user.company.name }}</span>
+                </div>
+                <div class="tags">
+                    <span class="badge">อายุ: {{ user.age }} ปี</span>
+                    <span class="badge" *ngIf="user.crypto">เหรียญ: {{ user.crypto.coin }}</span>
+                </div>
+            </div>
+
+            <div class="card-actions">
+                <button class="btn btn-edit" (click)="editUser(user.id)">แก้ไข</button>
+                <button class="btn btn-delete" (click)="deleteUser(user.id)">ลบ</button>
+            </div>
+        </div>
+    </div>
+</div>
