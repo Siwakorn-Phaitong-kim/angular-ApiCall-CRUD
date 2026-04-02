@@ -1123,22 +1123,12 @@
     {
       "firstName": "1",
       "lastName": "1",
-      "email": "1@1",
+      "email": "1@3",
       "phone": "1",
       "age": 1,
       "role": "user",
-      "image": "https://dummyjson.com/icon/default/128",
-      "id": "g6X7OWVmYpA"
-    },
-    {
-      "firstName": "ๅ",
-      "lastName": "ๅ",
-      "email": "ๅ๑ๅ",
-      "phone": "1",
-      "age": 1,
-      "role": "user",
-      "image": "https://dummyjson.com/icon/default/128",
-      "id": "m0cDK5d1rKE"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png",
+      "id": "BzRAKti-6WY"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

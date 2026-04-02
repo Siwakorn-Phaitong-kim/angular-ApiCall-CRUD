@@ -25,7 +25,7 @@ export class Create {
     phone: '',
     age: 0,
     role: 'user',
-    image: 'https://dummyjson.com/icon/default/128'
+    image: 'https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png'
   };
 
   async save() {
