@@ -30,7 +30,7 @@ export class Edit implements OnInit {
   }
 
   get draftKey(): string {
-    return `${this.DRAFT_PREFIX}${this.userId}`;
+    return `${this.DRAFT_PREFIX}ID : ${this.userId}`;
   }
 
   saveDraft() {
@@ -93,6 +93,7 @@ export class Edit implements OnInit {
       await this.apiService.editUser(this.userId, this.user);
       alert('บันทึกข้อมูลสำเร็จ');
       this.router.navigate(['users']);
+      this.clearDraft();
     } catch (e) {
       console.error(e);
       alert('เกิดข้อผิดพลาดในการบันทึกข้อมูล');

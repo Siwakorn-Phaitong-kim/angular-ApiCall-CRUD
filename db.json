@@ -2,7 +2,7 @@
   "users": [
     {
       "id": "11",
-      "firstName": "Liam1",
+      "firstName": "Kafka1",
       "lastName": "Garcia",
       "maidenName": "",
       "age": 28,
@@ -1129,6 +1129,26 @@
       "role": "user",
       "image": "https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png",
       "id": "BzRAKti-6WY"
+    },
+    {
+      "firstName": "Siwakorn",
+      "lastName": "Phaitong",
+      "email": "siwakorn@idpassglobal.com",
+      "phone": "+1 240-833-4680",
+      "age": 1,
+      "role": "user",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png",
+      "id": "Oifdx2uPFhA"
+    },
+    {
+      "firstName": "anutin",
+      "lastName": "sonub",
+      "email": "sowal@sdia.com",
+      "phone": "+1 240-833-4680",
+      "age": 12,
+      "role": "user",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png",
+      "id": "P2xiZiiBAE8"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
