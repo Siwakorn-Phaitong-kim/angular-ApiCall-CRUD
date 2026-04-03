@@ -16,14 +16,38 @@ export class Edit implements OnInit {
   private router = inject(Router);
   private apiService = inject(Api);
   private cdr = inject(ChangeDetectorRef);
+  private readonly DRAFT_PREFIX = 'edit_user_draft_';
 
   userId: string | null = null;
   loading: boolean = true;
   saving: boolean = false;
   user: User | null = null;
 
+
   async ngOnInit() {
     await this.loadFormData();
+    this.loadDraft();
+  }
+
+  get draftKey(): string {
+    return `${this.DRAFT_PREFIX}${this.userId}`;
+  }
+
+  saveDraft() {
+    if (this.user && this.userId) {
+      localStorage.setItem(this.draftKey, JSON.stringify(this.user));
+    }
+  }
+
+  loadDraft() {
+    const draft = localStorage.getItem(this.draftKey);
+    if (draft) {
+      this.user = JSON.parse(draft);
+    }
+  }
+
+  clearDraft() {
+    localStorage.removeItem(this.draftKey);
   }
 
   async loadFormData() {

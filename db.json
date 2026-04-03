@@ -488,14 +488,14 @@
         "wallet": "0xb9fc2fe63b2a6c003f1c324c3bfa53259162181a",
         "network": "Ethereum (ERC20)"
       },
-      "role": "user"
+      "role": "admin"
     },
     {
       "id": "19",
       "firstName": "Abigail",
       "lastName": "Rivera",
       "maidenName": "",
-      "age": 29,
+      "age": 2122,
       "gender": "female",
       "email": "abigail.rivera@x.dummyjson.com",
       "phone": "+91 228-363-7806",
@@ -558,7 +558,7 @@
         "wallet": "0xb9fc2fe63b2a6c003f1c324c3bfa53259162181a",
         "network": "Ethereum (ERC20)"
       },
-      "role": "user"
+      "role": "admin"
     },
     {
       "id": "20",

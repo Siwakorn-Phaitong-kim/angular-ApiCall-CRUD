@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -11,7 +11,7 @@ import { User } from '../../model/user';
   templateUrl: './create.html',
   styleUrl: './create.css',
 })
-export class Create {
+export class Create implements OnInit {
   private router = inject(Router);
   private apiService = inject(Api);
   private cdr = inject(ChangeDetectorRef);
@@ -27,6 +27,32 @@ export class Create {
     role: 'user',
     image: 'https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png'
   };
+
+  private readonly DRAFT_KEY = 'create_user_draft';
+
+  ngOnInit() {
+    this.loadDraft();
+  }
+
+  loadDraft() {
+    const draft = localStorage.getItem(this.DRAFT_KEY);
+    if (draft) {
+      // const confirmRestore = confirm('พบข้อมูลร่างเดิมที่คุณเคยกรอกไว้ ต้องการดึงข้อมูลกลับมาหรือไม่?');
+      // if (confirmRestore) {
+      this.user = JSON.parse(draft);
+      // } else {
+      //   this.clearDraft();
+      // }
+    }
+  }
+
+  saveDraft() {
+    localStorage.setItem(this.DRAFT_KEY, JSON.stringify(this.user));
+  }
+
+  clearDraft() {
+    localStorage.removeItem(this.DRAFT_KEY);
+  }
 
   async save() {
     if (!this.user.firstName) {
@@ -58,6 +84,7 @@ export class Create {
     this.cdr.detectChanges();
     try {
       await this.apiService.createUsers(this.user);
+      this.clearDraft();
       alert('บันทึกข้อมูลสำเร็จ');
       this.router.navigate(['users']);
     } catch (e) {
@@ -70,6 +97,10 @@ export class Create {
   }
 
   cancel() {
+    // const confirmCancel = confirm('ข้อมูลที่คุณกรอกจะหายไป ต้องการยกเลิกใช่หรือไม่?');
+    // if (confirmCancel) {
+    //   this.clearDraft();
     this.router.navigate(['users']);
+    // }
   }
 }
