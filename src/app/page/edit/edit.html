@@ -14,27 +14,32 @@
     <form (ngSubmit)="save()">
       <div class="form-group">
         <label>ชื่อ (First Name)</label>
-        <input id="firstName" type="text" name="firstName" [(ngModel)]="user.firstName" (ngModelChange)="saveDraft()" required class="form-control">
+        <input id="firstName" type="text" name="firstName" [(ngModel)]="user.firstName" (ngModelChange)="saveDraft()"
+          required class="form-control">
       </div>
 
       <div class="form-group">
         <label>นามสกุล (Last Name)</label>
-        <input id="lastName" type="text" name="lastName" [(ngModel)]="user.lastName" (ngModelChange)="saveDraft()" required class="form-control">
+        <input id="lastName" type="text" name="lastName" [(ngModel)]="user.lastName" (ngModelChange)="saveDraft()"
+          required class="form-control">
       </div>
 
       <div class="form-group">
         <label>อีเมล (Email)</label>
-        <input id="email" type="email" name="email" [(ngModel)]="user.email" (ngModelChange)="saveDraft()" required class="form-control">
+        <input id="email" type="email" name="email" [(ngModel)]="user.email" (ngModelChange)="saveDraft()" required
+          class="form-control">
       </div>
 
       <div class="form-group">
         <label>เบอร์โทรศัพท์ (Phone)</label>
-        <input id="phone" type="text" name="phone" [(ngModel)]="user.phone" (ngModelChange)="saveDraft()" required class="form-control">
+        <input id="phone" type="text" name="phone" [(ngModel)]="user.phone" (ngModelChange)="saveDraft()" required
+          class="form-control">
       </div>
 
       <div class="form-group">
         <label>อายุ (Age)</label>
-        <input id="age" type="number" name="age" [(ngModel)]="user.age" (ngModelChange)="saveDraft()" required class="form-control">
+        <input id="age" type="number" name="age" [(ngModel)]="user.age" (ngModelChange)="saveDraft()" required
+          class="form-control">
       </div>
 
       <div class="form-group">
@@ -46,8 +51,15 @@
         </select>
       </div>
 
+      <div class="form-group image-group">
+        <label>รูป</label>
+        <input id="image" type="text" name="image" [(ngModel)]="user.image" (ngModelChange)="saveDraft()" required
+          class="form-control">
+        <img [src]="user.image" alt="{{ user.firstName }}" class="avatar">
+      </div>
+
       <div class="form-actions">
-        <button type="button" class="btn btn-secondary" (click)="cancel()" [disabled]="saving">(Cancel)</button>
+        <button type="button" class="btn btn-secondary" (click)="cancel()">(Cancel)</button>
         <button type="submit" class="btn btn-primary" [disabled]="saving">
           {{ saving ? 'กำลังบันทึก...' : '(Save)' }}
         </button>

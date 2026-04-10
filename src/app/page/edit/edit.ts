@@ -74,7 +74,6 @@ export class Edit implements OnInit {
   async save() {
     if (!this.user || !this.userId) return;
 
-    // 1. Validation ด้วย SweetAlert2 (เลือกใช้ Toast หรือ Modal ก็ได้)
     if (!this.user.firstName || !this.user.lastName || !this.user.email) {
       Swal.fire({
         icon: 'warning',
