@@ -79,7 +79,7 @@ export class Edit implements OnInit {
         icon: 'warning',
         title: 'ข้อมูลไม่ครบถ้วน',
         text: 'กรุณากรอกข้อมูลให้ครบทุกช่อง',
-        confirmButtonColor: '#3085d6'
+        confirmButtonColor: '#3085d6',
       });
       return;
     }

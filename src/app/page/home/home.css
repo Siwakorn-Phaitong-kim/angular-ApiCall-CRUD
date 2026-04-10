@@ -1,273 +1,117 @@
-/* Styling for Users Page */
-.user-dashboard {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 2rem;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    color: #333;
+:host {
+    display: block;
+    --primary: #2563eb;
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --border-color: #e2e8f0;
+    --bg-light: #ffffff;
+    --card-hover: #f8fafc;
+}
+
+.container {
+    min-height: 100vh;
+    background-color: var(--bg-light);
+    color: var(--text-primary);
+    padding: 3rem 1.5rem;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .header {
-    margin-bottom: 2rem;
     text-align: center;
+    margin-bottom: 3.5rem;
 }
 
 .header h1 {
-    font-size: 2.5rem;
-    color: #111827;
-    margin-bottom: 0.5rem;
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
 }
 
-.subtitle {
-    color: #6b7280;
+.brand {
+    color: var(--primary);
+}
+
+.header p {
+    color: var(--text-secondary);
     font-size: 1.1rem;
 }
 
-/* Loading State */
-.loading-state {
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    width: 100%;
+    max-width: 600px;
+}
+
+.card {
+    background-color: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.card:hover {
+    border-color: var(--primary);
+    background-color: var(--card-hover);
+    transform: translateX(4px);
+}
+
+.icon {
+    font-size: 1.5rem;
+    width: 3rem;
+    height: 3rem;
+    background-color: #f1f5f9;
+    border-radius: 10px;
+    display: flex;
     align-items: center;
     justify-content: center;
-    padding: 4rem;
-    color: #6b7280;
 }
 
-.spinner {
-    border: 4px solid #f3f3f3;
-    border-top: 4px solid #3b82f6;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    animation: spin 1s linear infinite;
-    margin-bottom: 1rem;
+.info {
+    flex-grow: 1;
 }
 
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-/* Card Grid */
-.user-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
-}
-
-.user-card {
-    background: white;
-    border-radius: 16px;
-    padding: 1.5rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #e5e7eb;
-}
-
-.user-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 20px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-}
-
-.card-header {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-    border-bottom: 1px solid #f3f4f6;
-    padding-bottom: 1rem;
-}
-
-.avatar-wrapper {
-    flex-shrink: 0;
-}
-
-.avatar {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    object-fit: cover;
-    background-color: #f3f4f6;
-    border: 2px solid #e5e7eb;
-}
-
-.user-main-info h2 {
-    font-size: 1.15rem;
+.info h3 {
+    font-size: 1.125rem;
     font-weight: 600;
-    color: #111827;
     margin: 0 0 0.25rem 0;
 }
 
-.badge {
-    display: inline-block;
-    padding: 0.25rem 0.6rem;
-    border-radius: 9999px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
+.info p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin: 0;
 }
 
-.role-badge {
-    background-color: #dbeafe;
-    color: #1d4ed8;
+.arrow {
+    font-size: 1.25rem;
+    color: var(--border-color);
+    transition: color 0.2s ease;
 }
 
-/* Card Body */
-.card-body {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    margin-bottom: 1.5rem;
+.card:hover .arrow {
+    color: var(--primary);
 }
 
-.info-row {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.5rem;
-    font-size: 0.875rem;
-    color: #4b5563;
-}
-
-.info-row .icon {
-    font-size: 1rem;
-}
-
-.tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 0.5rem;
-}
-
-.tags .badge {
-    background-color: #f3f4f6;
-    color: #374151;
-    text-transform: none;
-}
-
-/* Actions */
-.card-actions {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.75rem;
+.footer {
     margin-top: auto;
-}
-
-.btn {
-    padding: 0.625rem 1rem;
-    border-radius: 8px;
+    padding-top: 4rem;
+    color: #94a3b8;
     font-size: 0.875rem;
-    font-weight: 500;
-    border: none;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
-.btn-edit {
-    background-color: #f3f4f6;
-    color: #374151;
-}
-
-.btn-edit:hover {
-    background-color: #e5e7eb;
-    color: #111827;
-}
-
-.btn-delete {
-    background-color: #fee2e2;
-    color: #dc2626;
-}
-
-.btn-delete:hover {
-    background-color: #fecaca;
-    color: #b91c1c;
-}
-
-/* Add a responsive dark mode for extra premium feel */
-@media (prefers-color-scheme: dark) {
-    .user-dashboard {
-        color: #f3f4f6;
-    }
-
+/* Tablet & Desktop */
+@media (min-width: 768px) {
     .header h1 {
-        color: #0f0f0f;
-    }
-
-    .subtitle {
-        color: #9ca3af;
-    }
-
-    .user-card {
-        background: #1f2937;
-        border-color: #374151;
-    }
-
-    .user-card:hover {
-        box-shadow: 0 12px 20px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
-    }
-
-    .user-main-info h2 {
-        color: #f9fafb;
-    }
-
-    .card-header {
-        border-bottom-color: #374151;
-    }
-
-    .info-row {
-        color: #d1d5db;
-    }
-
-    .avatar {
-        border-color: #4b5563;
-    }
-
-    .role-badge {
-        background-color: rgba(59, 130, 246, 0.2);
-        color: #93c5fd;
-    }
-
-    .btn-edit {
-        background-color: #374151;
-        color: #f3f4f6;
-    }
-
-    .btn-success {
-        background-color: #06e7199f;
-        color: #ffffff;
-    }
-
-    .btn-success:hover {
-        background-color: #06e7199f;
-        color: #ffffff;
-    }
-
-    .btn-edit:hover {
-        background-color: #4b5563;
-    }
-
-    .btn-delete {
-        background-color: rgba(239, 68, 68, 0.15);
-        color: #f87171;
-    }
-
-    .btn-delete:hover {
-        background-color: rgba(239, 68, 68, 0.25);
-    }
-
-    .tags .badge {
-        background-color: #374151;
-        color: #d1d5db;
+        font-size: 3rem;
     }
 }

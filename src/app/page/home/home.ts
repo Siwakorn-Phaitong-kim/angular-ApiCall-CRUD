@@ -1,8 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { Users } from '../users/users';
 import { CommonModule } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-home',
@@ -11,9 +10,26 @@ import { CommonModule } from '@angular/common';
   styleUrl: './home.css',
 })
 export class Home {
-  constructor() { }
-  router = inject(Router)
-  gotoUsers() {
-    this.router.navigate(['users'])
+  router = inject(Router);
+
+  // Quick links for the minimalist dashboard
+  features = [
+    { title: 'User Management', description: 'View, edit, and delete system users.', path: 'users', icon: '👤' },
+    { title: 'System Settings', description: 'Configure application preferences.', path: 'settings', icon: '⚙️' },
+    { title: 'API Documentation', description: 'Explore API endpoints and models.', path: 'docs', icon: '📚' }
+  ];
+
+  async gotoPage(path: string) {
+    if (path === 'users') {
+      this.router.navigate([path]);
+    } else {
+      await Swal.fire({
+        icon: 'warning',
+        title: 'Warning',
+        text: `Feature "${path}" is coming soon!`,
+        timer: 2000,
+        showConfirmButton: true
+      });
+    }
   }
 }
