@@ -2,6 +2,7 @@ import { Component, inject, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Api } from '../../service/api';
+import { AuthService } from '../../service/auth.service';
 import { User } from '../../model/user';
 import Swal from 'sweetalert2';
 
@@ -14,6 +15,7 @@ import Swal from 'sweetalert2';
 export class Home implements OnInit {
   router = inject(Router);
   apiService = inject(Api);
+  authService = inject(AuthService);
   cdr = inject(ChangeDetectorRef);
 
   totalUsers: number = 0;
@@ -64,4 +66,8 @@ export class Home implements OnInit {
     }
   }
 
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['login']);
+  }
 }

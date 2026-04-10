@@ -1,0 +1,37 @@
+<div class="login-container">
+    <div class="login-card">
+        <div class="login-header">
+            <h1 class="brand">AppPortal</h1>
+            <p class="subtitle">Welcome back! Please login to your account.</p>
+        </div>
+
+        <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <div class="input-wrapper">
+                    <span class="input-icon">👤</span>
+                    <input type="text" id="username" name="username" [(ngModel)]="username"
+                        placeholder="Enter your username" required autocomplete="username">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div class="input-wrapper">
+                    <span class="input-icon">🔒</span>
+                    <input type="password" id="password" name="password" [(ngModel)]="password"
+                        placeholder="Enter your password" required autocomplete="current-password">
+                </div>
+            </div>
+
+            <button type="submit" class="btn-login" [disabled]="loading">
+                <span *ngIf="!loading">Login</span>
+                <span *ngIf="loading" class="spinner-small"></span>
+            </button>
+        </form>
+
+        <div class="login-footer">
+            <p>Mock Credentials: <strong>admin</strong> / <strong>123</strong></p>
+        </div>
+    </div>
+</div>
