@@ -9,28 +9,30 @@ import { User } from '../model/user';
 })
 export class Api {
   private http = inject(HttpClient);
-  private apiUrl = `${environment.apiUrl}/users`;
+  private apiUrl = `${environment.apiUrl}`;
 
   getAllUsers(): Promise<User[] | { users: User[] }> {
-    return firstValueFrom(this.http.get<User[] | { users: User[] }>(this.apiUrl));
+    const api = this.apiUrl + '/users';
+    return firstValueFrom(this.http.get<User[] | { users: User[] }>(api));
   }
 
   getOneUser(id: string | number): Promise<User> {
-    const api = `${this.apiUrl}/${id}`;
+    const api = this.apiUrl + '/users/' + id;
     return firstValueFrom(this.http.get<User>(api));
   }
 
   createUsers(data: User): Promise<User> {
-    return firstValueFrom(this.http.post<User>(this.apiUrl, data));
+    const api = this.apiUrl + '/users';
+    return firstValueFrom(this.http.post<User>(api, data));
   }
 
   deleteUser(id: string | number): Promise<any> {
-    const api = `${this.apiUrl}/${id}`;
+    const api = this.apiUrl + '/users/' + id;
     return firstValueFrom(this.http.delete(api));
   }
 
   editUser(id: string | number, data: User): Promise<User> {
-    const api = `${this.apiUrl}/${id}`;
+    const api = this.apiUrl + '/users/' + id;
     return firstValueFrom(this.http.put<User>(api, data));
   }
 }

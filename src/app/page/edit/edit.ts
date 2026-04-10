@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Api } from '../../service/api';
 import { User } from '../../model/user';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-edit',
@@ -16,7 +18,7 @@ export class Edit implements OnInit {
   private router = inject(Router);
   private apiService = inject(Api);
   private cdr = inject(ChangeDetectorRef);
-  private readonly DRAFT_PREFIX = 'edit_user_draft_';
+  private readonly DRAFT_PREFIX = 'แก้ไข users';
 
   userId: string | null = null;
   loading: boolean = true;
@@ -30,7 +32,7 @@ export class Edit implements OnInit {
   }
 
   get draftKey(): string {
-    return `${this.DRAFT_PREFIX}ID : ${this.userId}`;
+    return `${this.DRAFT_PREFIX} ID : ${this.userId}`;
   }
 
   saveDraft() {
@@ -72,17 +74,14 @@ export class Edit implements OnInit {
   async save() {
     if (!this.user || !this.userId) return;
 
-    // Validation using the user object directly
-    if (!this.user.firstName) {
-      alert('กรุณากรอกชื่อ');
-      return;
-    }
-    if (!this.user.lastName) {
-      alert('กรุณากรอกนามสกุล');
-      return;
-    }
-    if (!this.user.email) {
-      alert('กรุณากรอกอีเมล');
+    // 1. Validation ด้วย SweetAlert2 (เลือกใช้ Toast หรือ Modal ก็ได้)
+    if (!this.user.firstName || !this.user.lastName || !this.user.email) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'ข้อมูลไม่ครบถ้วน',
+        text: 'กรุณากรอกข้อมูลให้ครบทุกช่อง',
+        confirmButtonColor: '#3085d6'
+      });
       return;
     }
 
@@ -91,12 +90,25 @@ export class Edit implements OnInit {
 
     try {
       await this.apiService.editUser(this.userId, this.user);
-      alert('บันทึกข้อมูลสำเร็จ');
+
+      await Swal.fire({
+        icon: 'success',
+        title: 'บันทึกสำเร็จ',
+        text: 'ข้อมูลของคุณถูกอัปเดตเรียบร้อยแล้ว',
+        timer: 2000,
+        showConfirmButton: false
+      });
+
       this.router.navigate(['users']);
       this.clearDraft();
     } catch (e) {
       console.error(e);
-      alert('เกิดข้อผิดพลาดในการบันทึกข้อมูล');
+
+      Swal.fire({
+        icon: 'error',
+        title: 'เกิดข้อผิดพลาด',
+        text: 'ไม่สามารถบันทึกข้อมูลได้ในขณะนี้',
+      });
     } finally {
       this.saving = false;
       this.cdr.detectChanges();

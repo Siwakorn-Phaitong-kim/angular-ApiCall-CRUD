@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Api } from '../../service/api';
 import { CommonModule } from '@angular/common';
 import { User } from '../../model/user';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-users',
@@ -41,15 +42,38 @@ export class Users implements OnInit {
 
   async deleteUser(id: string | number | undefined): Promise<void> {
     if (id === undefined) return;
-    const confirmed = confirm('You Confirm to Delete This User?')
-    if (confirmed) {
+    const result = await Swal.fire({
+      title: 'Are you sure?',
+      text: `You want to delete User ID: ${id}?`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Yes, delete it!'
+    });
+
+    if (result.isConfirmed) {
       try {
         await this.apiService.deleteUser(id);
-        console.log(`delete user ID( ${id} ) success`);
+
+        // 2. แสดง Toast แจ้งเตือนว่าลบสำเร็จ
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true
+        });
+
+        Toast.fire({
+          icon: 'success',
+          title: `Deleted user ID: ${id} successfully`
+        });
+
         this.getDataAll();
       } catch (error) {
+        Swal.fire('Error!', 'Failed to delete user.', 'error');
         console.error(error);
-        this.error = 'Error deleting data';
       }
     }
   }
