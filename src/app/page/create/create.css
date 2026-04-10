@@ -152,3 +152,17 @@
     background-color: #4b5563;
   }
 }
+
+.image-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #e5e7eb;
+}

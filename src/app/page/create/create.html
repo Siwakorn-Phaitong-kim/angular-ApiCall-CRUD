@@ -45,6 +45,13 @@
                 </select>
             </div>
 
+            <div class="form-group image-group">
+                <label>รูป</label>
+                <input id="image" type="text" name="image" [(ngModel)]="user.image" (ngModelChange)="saveDraft()"
+                    required class="form-control">
+                <img [src]="user.image" alt="{{ user.firstName }}" class="avatar">
+            </div>
+
             <div class="form-actions">
                 <button type="button" class="btn btn-secondary" (click)="cancel()" [disabled]="saving">ยกเลิก
                     (Cancel)</button>

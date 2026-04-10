@@ -44,6 +44,7 @@ export class Users implements OnInit {
     if (id === undefined) return;
     const result = await Swal.fire({
       title: 'Are you sure?',
+      width: '600px',
       text: `You want to delete User ID: ${id}?`,
       icon: 'warning',
       showCancelButton: true,
@@ -55,8 +56,6 @@ export class Users implements OnInit {
     if (result.isConfirmed) {
       try {
         await this.apiService.deleteUser(id);
-
-        // 2. แสดง Toast แจ้งเตือนว่าลบสำเร็จ
         const Toast = Swal.mixin({
           toast: true,
           position: 'top-end',

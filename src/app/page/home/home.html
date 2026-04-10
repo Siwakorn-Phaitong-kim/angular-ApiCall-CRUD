@@ -1,17 +1,83 @@
 <div class="container">
     <header class="header">
-        <h1>Welcome to <span class="brand">AppPortal</span></h1>
-        <p>Your simplified central management system.</p>
+        <div class="header-main">
+            <h1>Welcome to <span class="brand">AppPortal</span></h1>
+            <p>Your simplified central management system.</p>
+        </div>
     </header>
 
-    <div class="grid">
-        <div class="card" *ngFor="let item of features" (click)="gotoPage(item.path)">
-            <div class="icon">{{ item.icon }}</div>
-            <div class="info">
-                <h3>{{ item.title }}</h3>
-                <p>{{ item.description }}</p>
+    <!-- Stats Cards -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-icon users">👤</div>
+            <div class="stat-info">
+                <span class="stat-label">Total Users</span>
+                <h2 class="stat-value" *ngIf="!loading">{{ totalUsers }}</h2>
+                <div class="skeleton-text" *ngIf="loading"></div>
             </div>
-            <div class="arrow">→</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon admin">🛡️</div>
+            <div class="stat-info">
+                <span class="stat-label">Admin Staff</span>
+                <h2 class="stat-value" *ngIf="!loading">{{ adminCount }}</h2>
+                <div class="skeleton-text" *ngIf="loading"></div>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon status">✨</div>
+            <div class="stat-info">
+                <span class="stat-label">System Status</span>
+                <h2 class="stat-value active" *ngIf="!loading">Active</h2>
+                <div class="skeleton-text" *ngIf="loading"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-grid">
+        <!-- Quick Features List -->
+        <div class="features-section">
+            <h3 class="section-title">Quick Navigation</h3>
+            <div class="feature-list">
+                <div class="card" *ngFor="let item of features" (click)="gotoPage(item.path)">
+                    <div class="icon">{{ item.icon }}</div>
+                    <div class="info">
+                        <h3>{{ item.title }}</h3>
+                        <p>{{ item.description }}</p>
+                    </div>
+                    <div class="arrow">→</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Activity Section -->
+        <div class="activity-section">
+            <h3 class="section-title">Recent Members</h3>
+            <div class="activity-list">
+                <div class="loading-spinner" *ngIf="loading">
+                    <div class="spinner"></div>
+                    <p>Loading members...</p>
+                </div>
+
+                <div class="activity-item" *ngFor="let user of recentUsers">
+                    <img [src]="user.image || 'https://i.pravatar.cc/150'" alt="{{ user.firstName }}"
+                        class="member-avatar">
+                    <div class="member-info">
+                        <span class="member-name">{{ user.firstName }} {{ user.lastName }}</span>
+                        <span class="member-role">{{ user.role }}</span>
+                    </div>
+                    <div class="member-action" (click)="router.navigate(['edit', user.id])">Edit</div>
+                </div>
+
+                <div class="empty-state" *ngIf="!loading && recentUsers.length === 0">
+                    <p>No recent activity found.</p>
+                </div>
+
+                <button class="btn-text" (click)="router.navigate(['users'])"
+                    *ngIf="!loading && recentUsers.length > 0">
+                    View all members <span>→</span>
+                </button>
+            </div>
         </div>
     </div>
 
