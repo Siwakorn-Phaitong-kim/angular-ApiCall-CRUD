@@ -90,6 +90,16 @@ export class Create implements OnInit {
       });
       return;
     }
+
+    const phoneRegex = /^0[1-9]{1}-[0-9]{8}$/;
+    if (!phoneRegex.test(this.user.phone)) {
+      await Swal.fire({
+        icon: 'error',
+        title: 'เกิดข้อผิดพลาด',
+        text: 'รูปแบบเบอร์โทรศัพท์ไม่ถูกต้อง (ต้องเป็นตัวเลข 10 หลักและขึ้นต้นด้วย 0)',
+      });
+      return;
+    }
     if (!this.user.role) {
       await Swal.fire({
         icon: 'error',

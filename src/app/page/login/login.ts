@@ -31,11 +31,11 @@ export class Login {
     }
 
     this.loading = true;
-    
+
     // Simulate API delay
     await new Promise(resolve => setTimeout(resolve, 800));
 
-    if (this.authService.login(this.username, this.password)) {
+    if (this.authService.login(this.username.trim(), this.password.trim())) {
       const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
@@ -57,7 +57,7 @@ export class Login {
         text: 'Invalid username or password.',
       });
     }
-    
+
     this.loading = false;
   }
 }

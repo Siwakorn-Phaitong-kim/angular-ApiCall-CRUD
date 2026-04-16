@@ -1,0 +1,43 @@
+@use '@angular/material' as mat;
+
+// We now only use this file for Angular Material specific themes.
+// Basic variables and typography are in styles.css for better performance/scoping.
+
+html {
+  height: 100%;
+}
+
+// Global Material Theme (Light by default)
+@include mat.theme((
+  color: (
+    theme-type: light,
+    primary: mat.$azure-palette,
+    tertiary: mat.$blue-palette,
+  ),
+  density: 0,
+));
+
+// Dark Material Theme applied via body class
+body.dark-theme {
+  @include mat.theme((
+    color: (
+      theme-type: dark,
+      primary: mat.$azure-palette,
+      tertiary: mat.$blue-palette,
+    ),
+    density: 0,
+  ));
+}
+
+// Global utility for premium shadows and transitions
+.app-card {
+  background-color: var(--app-surface);
+  border-radius: var(--app-border-radius);
+  box-shadow: var(--app-card-shadow);
+  transition: var(--app-transition);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+
+  .dark-theme & {
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+}

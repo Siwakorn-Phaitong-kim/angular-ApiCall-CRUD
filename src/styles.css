@@ -1,1 +1,50 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global Design Tokens */
+:root {
+  --app-primary: #1e3a8a;
+  --app-primary-light: #3b82f6;
+  --app-primary-dark: #1e3a5a;
+  --app-secondary: #64748b;
+  --app-success: #10b981;
+  --app-warning: #f59e0b;
+  --app-error: #ef4444;
+  --app-info: #0ea5e9;
+  --app-surface: #ffffff;
+  --app-background: #f8fafc;
+  --app-on-surface: #0f172a;
+  --app-on-surface-variant: #475569;
+  --app-border-radius: 12px;
+  --app-card-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --app-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dark Mode Variables */
+body.dark-theme {
+  --app-primary: #60a5fa;
+  --app-primary-light: #93c5fd;
+  --app-primary-dark: #2563eb;
+  --app-surface: #1e293b;
+  --app-background: #0f172a;
+  --app-on-surface: #f8fafc;
+  --app-on-surface-variant: #94a3b8;
+  --app-card-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3), 0 4px 6px -4px rgb(0 0 0 / 0.3);
+  color-scheme: dark;
+}
+
+/* Global Typography & Base Styles */
+body {
+  font-family: "Outfit", "Sarabun", sans-serif;
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--app-background);
+  color: var(--app-on-surface);
+  margin: 0;
+  height: 100%;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Outfit", sans-serif;
+  font-weight: 600;
+  margin-top: 0;
+}

@@ -1,15 +1,12 @@
 :host {
     display: block;
-    --primary: #2563eb;
-    --primary-light: #eff6ff;
-    --text-primary: #1e293b;
-    --text-secondary: #64748b;
-    --border-color: #e2e8f0;
-    --bg-light: #ffffff;
-    --card-hover: #f8fafc;
-    --admin-color: #f59e0b;
-    --users-color: #4f46e5;
-    --status-color: #10b981;
+    --primary: var(--app-primary);
+    --primary-light: var(--app-primary-light);
+    --text-primary: var(--app-on-surface);
+    --text-secondary: var(--app-on-surface-variant);
+    --border-color: rgba(148, 163, 184, 0.2);
+    --bg-light: var(--app-background);
+    --card-hover: rgba(var(--app-primary), 0.05);
 }
 
 .container {
@@ -56,7 +53,7 @@
 }
 
 .stat-card {
-    background: #fff;
+    background-color: var(--app-surface);
     border: 1px solid var(--border-color);
     border-radius: 16px;
     padding: 1.5rem;
@@ -64,6 +61,7 @@
     align-items: center;
     gap: 1.25rem;
     transition: all 0.2s ease;
+    box-shadow: var(--app-card-shadow);
 }
 
 .stat-card:hover {
@@ -134,7 +132,7 @@
 }
 
 .card {
-    background-color: #fff;
+    background-color: var(--app-surface);
     border: 1px solid var(--border-color);
     border-radius: 12px;
     padding: 1.25rem;
@@ -143,6 +141,7 @@
     gap: 1rem;
     cursor: pointer;
     transition: all 0.2s ease;
+    box-shadow: var(--app-card-shadow);
 }
 
 .card:hover {
@@ -185,13 +184,14 @@
 
 /* Recent Members */
 .activity-list {
-    background: #fff;
+    background-color: var(--app-surface);
     border: 1px solid var(--border-color);
     border-radius: 16px;
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
+    box-shadow: var(--app-card-shadow);
 }
 
 .activity-item {
@@ -251,9 +251,9 @@
 }
 
 .btn-logout {
-    background-color: #fff;
+    background-color: var(--app-surface);
     color: #ef4444;
-    border: 1.5px solid #fee2e2;
+    border: 1.5px solid rgba(239, 68, 68, 0.2);
     padding: 0.75rem 1.25rem;
     border-radius: 50px;
     font-weight: 600;

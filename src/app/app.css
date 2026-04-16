@@ -1,0 +1,23 @@
+.theme-toggle-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.theme-toggle-btn:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.theme-toggle-btn:active {
+  transform: scale(0.9);
+}
+
+/* 
+// Adjust colors for dark mode specifically for this button if needed */
+.dark-theme .theme-toggle-btn {
+  background-color: var(--app-primary);
+  color: white;
+}

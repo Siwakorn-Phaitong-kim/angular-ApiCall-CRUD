@@ -12,7 +12,7 @@ export class AuthService {
   ];
 
   login(username: string, password: string): boolean {
-    const user = this.mockUsers.find(u => u.username === username && u.password === password);
+    const user = this.mockUsers.find(u => u.username === username.trim() && u.password === password.trim());
     if (user) {
       localStorage.setItem(this.AUTH_KEY, JSON.stringify({ username: user.username }));
       return true;

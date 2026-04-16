@@ -24,7 +24,7 @@
         <div class="user-card" *ngFor="let user of users">
             <div class="card-header">
                 <div class="avatar-wrapper">
-                    <img [src]="user.image" [alt]="user.firstName" class="avatar">
+                    <img [src]="user.image || 'https://i.pravatar.cc/150'" [alt]="user.firstName" class="avatar">
                 </div>
                 <div class="user-main-info">
                     <h2>{{ user.firstName }} {{ user.lastName }}</h2>

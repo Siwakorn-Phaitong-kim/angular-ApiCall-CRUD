@@ -4,19 +4,19 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #ffffff; /* User preferred white background */
+    background-color: var(--app-background);
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     padding: 1.5rem;
 }
 
 .login-card {
-    background: #fff;
+    background-color: var(--app-surface);
     width: 100%;
     max-width: 420px;
     padding: 3rem 2.5rem;
     border-radius: 20px;
-    border: 1px solid #e2e8f0;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    box-shadow: var(--app-card-shadow);
     text-align: center;
 }
 
@@ -46,7 +46,7 @@
     display: block;
     font-size: 0.875rem;
     font-weight: 600;
-    color: #1e293b;
+    color: var(--app-on-surface);
     margin-bottom: 0.5rem;
 }
 
@@ -66,18 +66,19 @@
 input {
     width: 100%;
     padding: 0.75rem 1rem 0.75rem 2.75rem;
-    border: 1.5px solid #e2e8f0;
+    border: 1.5px solid rgba(148, 163, 184, 0.1);
     border-radius: 12px;
     font-size: 1rem;
     transition: all 0.2s ease;
-    background-color: #f8fafc;
+    background-color: var(--app-background);
+    color: var(--app-on-surface);
 }
 
 input:focus {
     outline: none;
-    border-color: #2563eb;
-    background-color: #fff;
-    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+    border-color: var(--app-primary);
+    background-color: var(--app-surface);
+    box-shadow: 0 0 0 4px rgba(var(--app-primary), 0.1);
 }
 
 .btn-login {

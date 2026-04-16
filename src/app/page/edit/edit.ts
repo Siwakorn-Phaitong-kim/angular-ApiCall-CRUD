@@ -74,12 +74,22 @@ export class Edit implements OnInit {
   async save() {
     if (!this.user || !this.userId) return;
 
-    if (!this.user.firstName || !this.user.lastName || !this.user.email) {
+    if (!this.user.firstName || !this.user.lastName || !this.user.email || !this.user.phone || !this.user.role || !this.user.age) {
       Swal.fire({
         icon: 'warning',
         title: 'ข้อมูลไม่ครบถ้วน',
         text: 'กรุณากรอกข้อมูลให้ครบทุกช่อง',
         confirmButtonColor: '#3085d6',
+      });
+      return;
+    }
+
+    const phoneRegex = /^0[1-9]{1}[0-9]{8}$/;
+    if (!phoneRegex.test(this.user.phone)) {
+      await Swal.fire({
+        icon: 'error',
+        title: 'เกิดข้อผิดพลาด',
+        text: 'รูปแบบเบอร์โทรศัพท์ไม่ถูกต้อง (ต้องเป็นตัวเลข 10 หลักและขึ้นต้นด้วย 0)',
       });
       return;
     }
